@@ -2,37 +2,33 @@
 
 Global $count = 0
 
-Global $opfer = "Aufgaben" ;InputBox("Opfer", "Name des Opfers")
-Global $nachricht = "Happy Birthday Schatz❤🎉🎁💋" ;InputBox("Nachricht", "Nachricht an das Opfer")
+Global $opfer = InputBox("Opfer", "Name des Opfers");Iput des Opfers
+Global $nachricht = InputBox("Nachricht", "Nachricht an das Opfer");Input der Nachricht
+Global $Anzahl = InputBox("Anzahl", "Anzahl der Nachrichten");Anzahl der zu Spamenden Nachrichten
 
+If _FFConnect() Then;verbindet FF mit Bot
+	If _FFIsConnected() Then ; Wenn FireFox nun verbunden ist
+		If _FFOpenURL("web.whatsapp.com") Then;öffnet Whatsappweg
+			If _FFLoadWait() Then;wartet das es geladen ist
+				Sleep (10000) ;das es auch wirklich geladen ist
+				Send("{TAB}")
+				Send("{TAB}");navigiert in suchleiste
+				Sleep(1000);das man auch wirklich in der leiste ist
+				Send($opfer);gibt opfer ein
+				Sleep(1000);das opfer auch eingegeben ist
+				Send("{ENTER}");wählt opfer aus
+				Sleep(3000);das der chat auch offen ist bevor los gespämt wird
+				While $count <= $Anzahl;das nur bestimmt anzahl von nachrichten gespamt wird
 
-;_FFStart("https://web.whatsapp.com/") ; oder _FFConnect() wenn FireFox bereits offen sein sollte! Startet den FireFox mit der Seite "www.web.de" und wartet mit Fortführung des Scripts, bis geladen
+					$count = $count + 1;das die schleife auch aufhört
+					Send($nachricht)
+					Send("{ENTER}");eigentliches senden
+					Sleep(50);gegen zu starke lags
 
-If _FFConnect() Then
-If _FFIsConnected() Then ; Wenn FireFox nun verbunden ist, dann...
-	If _FFOpenURL("web.whatsapp.com") Then
-	If _FFLoadWait() Then
-	Sleep (10000) ; 1 Sekunde zum Verdeutlichen
-	Send("{TAB}")
-	Send("{TAB}")
-	Sleep(1000)
-	Send($opfer)
-	Sleep(1000)
-	Send("{ENTER}")
-	Sleep(3000)
-	While $count < 100
-
-
-
-	$count = $count + 1
-	Send($nachricht)
-	Send("{ENTER}")
-	Sleep(500)
-
-	WEnd
-	Else ;  Wenn FF nicht verbunden ist...
-	MsgBox(64, "Ein Fehler ist aufgetreten", "Eine Verbindung mit dem Mozilla FireFox war nicht möglich!")
+				WEnd
+				Else ;  Wenn FF nicht verbunden ist...
+					MsgBox(64, "Ein Fehler ist aufgetreten", "Eine Verbindung mit dem Mozilla FireFox war nicht möglich!")
+			EndIf
+		EndIf
 	EndIf
-EndIf
-EndIf
 EndIf
