@@ -18,6 +18,7 @@ If _FFConnect() Then;verbindet FF mit Bot
 				Sleep(1000);das opfer auch eingegeben ist
 				Send("{ENTER}");wählt opfer aus
 				Sleep(3000);das der chat auch offen ist bevor los gespämt wird
+<<<<<<< HEAD
 				While $count <= $Anzahl;das nur bestimmt anzahl von nachrichten gespamt wird
 
 					$count = $count + 1;das die schleife auch aufhört
@@ -28,6 +29,19 @@ If _FFConnect() Then;verbindet FF mit Bot
 				WEnd
 				Else ;  Wenn FF nicht verbunden ist...
 					MsgBox(64, "Ein Fehler ist aufgetreten", "Eine Verbindung mit dem Mozilla FireFox war nicht möglich!")
+=======
+
+				While $count <= $Anzahl;das nur bestimmt anzahl von nachrichten gespamt wird
+
+					$count = $count + 1;das die schleife auch aufhört
+					Send($nachricht)
+					Send("{ENTER}");eigentliches senden
+					Sleep(50);gegen zu starke lags
+
+				WEnd
+			Else ;  Wenn FF nicht verbunden ist...
+				MsgBox(64, "Ein Fehler ist aufgetreten", "Eine Verbindung mit dem Mozilla FireFox war nicht möglich!")
+>>>>>>> spambot-v-eng
 			EndIf
 		EndIf
 	EndIf
